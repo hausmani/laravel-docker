@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+    web:
+        container_name: laravel_docker
+        image: laravel_docker
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        restart: always
+        volumes:
+            - .:/var/www/html
+        env_file:
+            - ./.env
+        ports:
+            - "8004:80"
+        tty: true
+        stdin_open: true
+        extra_hosts:
+            - "dockerhost:127.0.0.1"
